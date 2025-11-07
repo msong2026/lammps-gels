@@ -33,7 +33,7 @@ fix 1 all nve/sphere
 # may need to change damping coefficient 1.88
 # this is for particle type 1 only (scale type ratio)
 fix 2 all viscous 1.88 scale 1 1.4
-run 1000000
+run 100000
 
 # 6) Save system
 write_dump all atom dump-*.lammpstrj
