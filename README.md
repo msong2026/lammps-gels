@@ -1,1 +1,2 @@
 # lammps-gels
+This is a repository for LAMMPS simulations of percolation in monodisperse and bidisperse colloidal gels. The gel initialization scripts are adapted from https://github.com/merrygoat/creep-sheared-gels.
