@@ -1,0 +1,38 @@
+LAMMPS (7 Feb 2024 - Update 1)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+# 1) Initialization
+dimension 3
+atom_style sphere
+comm_modify mode single vel yes
+# periodic boundary conditions
+boundary p p p
+
+# 2) System definition
+region simbox prism 0 14.6381 0 14.6381 0 14.6381 0 0 0 units box
+create_box 2 simbox
+Created triclinic box = (0 0 0) to (14.6381 14.6381 14.6381) with tilt (0 0 0)
+  1 by 1 by 1 MPI processor grid
+create_atoms 1 random 100 34134 NULL
+Created 100 atoms
+  using lattice units in triclinic box = (0 0 0) to (14.6381 14.6381 14.6381) with tilt (0 0 0)
+  create_atoms CPU = 0.037 seconds
+create_atoms 2 random 100 12756 NULL
+Created 100 atoms
+  using lattice units in triclinic box = (0 0 0) to (14.6381 14.6381 14.6381) with tilt (0 0 0)
+  create_atoms CPU = 0.000 seconds
+set type 1 diameter 2.2
+Setting atom values ...
+  100 settings made for diameter
+set type 1 density 2.35
+Setting atom values ...
+  100 settings made for density
+
+# 3) Settings
+pair_style granular
+pair_coeff * * hooke 10000 0 tangential linear_history 7000 0 0.1
+
+# 4) Monitoring
+thermo 10000
+dump id all custom 10000 create.dump id x y z radius
+log gel.init.log

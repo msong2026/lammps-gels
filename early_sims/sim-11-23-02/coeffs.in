@@ -1,0 +1,2 @@
+pair_coeff 1 1 morse 5 1.2 1 1.25
+pair_coeff 1 1 dpd/tstat 5

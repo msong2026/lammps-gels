@@ -1,0 +1,54 @@
+read_restart equil_1000000.restart
+
+# Temperature is set to 1 such that beta epsilon is then the morse well depth
+variable run_temp equal 1
+variable run_steps equal 2000000
+variable dump_frames equal 100
+
+variable dump_frequency equal ${run_steps}/${dump_frames}
+variable thermo_frequency equal ${run_steps}/1000
+
+pair_style	hybrid/overlay morse 1.25 dpd/tstat 1.0 1.0 1.35 34387
+
+# Set up the particle interactions
+include coeffs.in
+pair_modify	shift yes
+comm_modify vel yes
+
+timestep 0.001
+
+# Set up variables for the thermodynamic output
+variable varstep equal step
+variable vartemp equal temp
+variable varpress equal press
+variable varetotal equal etotal
+compute  msd all msd
+compute  com all com
+
+# Periodically output particle diameter and position data in the lammps atom format
+dump        dumpatom all custom ${dump_frequency} time-*.dump id x y z radius
+dump_modify	dumpatom sort id first yes
+
+# Periodically output the mean square displacement
+fix	msd all ave/time 1 1 ${thermo_frequency} c_msd[4] file msd.txt
+
+# Periodically output the center of mass
+fix com all ave/time 1 1 ${thermo_frequency} c_com[1] c_com[2] c_com[3] file com.txt
+
+# Periodically output the position, velocity, and forces for each atom
+fix pvf all ave/atom 1 1 ${thermo_frequency} x y z vx vy vz fx fy fz
+dump atompvf all custom ${thermo_frequency} pvf.txt id f_pvf[*]
+
+# Periodically print out thermodynamic variables
+fix thermo_print all print ${thermo_frequency} "${varstep} ${vartemp} ${varpress} ${varetotal}" file gel_equil_${run_steps}.thermo screen no
+thermo ${thermo_frequency}
+thermo_style custom step temp press pe
+
+# Do gel equilibration in nvt
+fix equilibrate all nvt/sphere temp ${run_temp} ${run_temp} 1
+fix nocomdrift all momentum ${thermo_frequency} linear 1 1 1
+run ${run_steps}
+unfix equilibrate
+
+# Write out a restart file to input to a different script
+write_restart equil_${run_steps}.restart
