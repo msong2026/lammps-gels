@@ -1,0 +1,6 @@
+group type1 type 1
+variable d1 equal 1.0
+pair_coeff 1 2 dpd/tstat 2.25
+group type2 type 2
+variable d2 equal 0.5
+pair_coeff 2 2 dpd/tstat 1.5
