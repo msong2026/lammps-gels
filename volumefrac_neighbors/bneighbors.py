@@ -12,7 +12,7 @@ def plotpng(quantity,ylabel,log,types,cutoff):
         columns = ["ac"+str(c) for c in types]
         data = pd.read_csv(file,  sep=" ",skiprows=2, names=["time",*columns])
         for j,t in enumerate(types):
-            ax[j].plot(data["time"][:100],data[columns[j]][:100],label=f"{vf} vol%")
+            ax[j].plot(data["time"][:100]*0.001,data[columns[j]][:100],label=f"{vf} vol%")
     for j,t in enumerate(types):
         ax[j].set_ylim([0,None])
         ax[j].set_xlabel("Time")
@@ -28,5 +28,5 @@ def plotpng(quantity,ylabel,log,types,cutoff):
 types = [1,2]
 diams = [1.0, 0.5]
 
-plotpng("avgcoord", "Average coordination number", False, types, 1.00)
-plotpng("avgcoord", "Average coordination number", False, types, 1.25)
+plotpng("avgcoord", "Average coordination number", False, types, 1.00) # c-to-c
+plotpng("avgcoord", "Average coordination number", False, types, 0.25) # s-to-s

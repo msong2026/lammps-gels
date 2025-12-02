@@ -16,7 +16,7 @@ def plotpng(quantity,ylabel,log,cutoffs,sc):
         for i,cutoff in enumerate(cutoffs):
             if i>=sc:
                 ax[i-sc].set_title(f"center-to-center cutoff = {cutoff}")
-                ax[i-sc].plot(data["time"][:100],data[columns[i]][:100],label=f"{vf} vol%")
+                ax[i-sc].plot(data["time"][:100]*0.001,data[columns[i]][:100],label=f"{vf} vol%")
     for i in range(2):
         ax[i].set_ylim([0,None])
         ax[i].set_xlabel("Time")
