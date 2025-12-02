@@ -11,7 +11,7 @@ def plotpng(quantity,ylabel,log):
     if log:
         plt.xscale("log")
         plt.yscale("log")
-    plt.savefig(quantity+("loglog" if log else "")+".png")
+    plt.savefig("msd"+("loglog" if log else "")+".png")
     plt.close()
 
 plotpng("msd", "Mean-squared displacement", False)
