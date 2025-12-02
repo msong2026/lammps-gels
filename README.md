@@ -1,6 +1,8 @@
 # lammps-gels
 This is a repository for LAMMPS simulations of percolation in monodisperse and bidisperse colloidal gels, created as part of a final project for the course PHYS 25000 Computational Physics (Autumn 2025) at the University of Chicago. The gel initialization scripts (gel_setup_bidisperse.py) are adapted from https://github.com/merrygoat/creep-sheared-gels. Scripts from https://doi.org/10.1007/s40571-023-00605-x were also referenced.
 
+See sim-11-bidisperse-0.9 for an animation.
+
 ## Procedure for running simulations
 Each folder starting with "sim" contains a single simulation and the associated post-processing files.
 1. To execute the gel_setup_bidisperse.py script, run `bash setup_script.sh`, which contains the input parameters. This step produces the files morse_input_phi0.xxxx.lmp (which contains the initial particle configuration) and coeffs.in (which contains the pair interaction parameters for the Morse potential and `dpd/tstat`). The gel_setup_bidisperse.py file was modified many times throughout the project, so the number of parameters in setup_script.sh is not necessarily the same between folders. Some folders may not have any setup files because the input files from another simulation are reused.
