@@ -1,0 +1,10 @@
+group type1 type 1
+variable d1 equal 1.0
+pair_coeff 1 1 morse 80 1.5 1 1.25
+pair_coeff 1 1 dpd/tstat 3
+pair_coeff 1 2 morse 205 1.5 0.75 0.9375
+pair_coeff 1 2 dpd/tstat 2.25
+group type2 type 2
+variable d2 equal 0.5
+pair_coeff 2 2 morse 330 1.5 0.5 0.625
+pair_coeff 2 2 dpd/tstat 1.5
