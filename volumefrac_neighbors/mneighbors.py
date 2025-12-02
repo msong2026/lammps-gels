@@ -15,7 +15,7 @@ def plotpng(quantity,ylabel,log,cutoffs,sc):
         data = pd.read_csv(file,  sep=" ",skiprows=2, names=["time",*columns])
         for i,cutoff in enumerate(cutoffs):
             if i>=sc:
-                ax[i-sc].set_title(f"cutoff={cutoff}")
+                ax[i-sc].set_title(f"center-to-center cutoff = {cutoff}")
                 ax[i-sc].plot(data["time"][:100],data[columns[i]][:100],label=f"{vf} vol%")
     for i in range(2):
         ax[i].set_ylim([0,None])
