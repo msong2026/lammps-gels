@@ -1,5 +1,5 @@
 # lammps-gels
-This is a repository for LAMMPS simulations of percolation in monodisperse and bidisperse colloidal gels, created as part of a final project for the course PHYS 25000 Computational Physics (Autumn 2025) at the University of Chicago. The gel initialization scripts (gel_setup_bidisperse.py) are adapted from https://github.com/merrygoat/creep-sheared-gels.
+This is a repository for LAMMPS simulations of percolation in monodisperse and bidisperse colloidal gels, created as part of a final project for the course PHYS 25000 Computational Physics (Autumn 2025) at the University of Chicago. The gel initialization scripts (gel_setup_bidisperse.py) are adapted from https://github.com/merrygoat/creep-sheared-gels. Scripts from https://doi.org/10.1007/s40571-023-00605-x were also referenced.
 
 ## Procedure for running simulations
 Each folder starting with "sim" contains a single simulation and the associated post-processing files.
@@ -15,6 +15,6 @@ Each folder starting with "sim" contains a single simulation and the associated 
     - forces.py: extracts the force components for individual atoms (forces_ID#.csv)
     - plotforces.py: plots force components and force magnitude for individual atoms (forces_ID#.png) and the force magnitude autocorrelation function for a selection of individual atoms (autocorrelation.png)
 
-Note that .dump files were not uploaded for most simulations to reduce clutter. They were kept for sim-11-bidisperse-0.9, sim-11-monodisperse-0.4, and sim-11-monodisperse-0.4-np
+Note that .dump files were not uploaded for most simulations to reduce clutter. They were kept for sim-11-bidisperse-0.9, sim-11-monodisperse-0.4, and sim-11-monodisperse-0.4-np.
 
 The numbers following monodisperse- and bidisperse- in the directory names indicate number density. Number densities were chosen to yield volume fractions of approximately 10%, 20%, and 40% for each of the setups (monodisperse and bidisperse).
